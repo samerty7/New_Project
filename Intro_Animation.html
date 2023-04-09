@@ -5,41 +5,56 @@
   <style>
     /* Define the initial state of the door */
     .door {
-      position: relative;
-      width: 400px;
-      height: 600px;
-      margin: 100px auto;
-      background-color: #ddd;
-      transform-origin: right;
-      transform: perspective(800px) rotateY(-110deg);
+      position: fixed; /* Position the door element relative to the viewport */
+      z-index: 1000; /* Set the stacking order of the door element */
+      width: 80%; /* Set the width of the door element to 80% of the viewport width */
+      height: 80%; /* Set the height of the door element to 80% of the viewport height */
+      top: 50%; /* Position the top edge of the door element at the vertical center of the viewport */
+      left: 50%; /* Position the left edge of the door element at the horizontal center of the viewport */
+      margin-top: -40%; /* Adjust the vertical position of the door element to center it */
+      margin-left: -40%; /* Adjust the horizontal position of the door element to center it */
+      background-color: #ddd; /* Set the background color of the door element */
+      transform-origin: right; /* Set the transform origin of the door element to the right edge */
+      transform: perspective(800px) rotateY(-110deg); /* Set the initial transform of the door element to simulate a closed door */
     }
+    
     /* Define the animation for opening the door */
     @keyframes door-opening {
       0% {
-        transform: perspective(800px) rotateY(-110deg);
+        transform: perspective(800px) rotateY(-110deg); /* Set the starting transform of the door element */
       }
       50% {
-        transform: perspective(800px) rotateY(-45deg);
+        transform: perspective(800px) rotateY(-45deg); /* Set the halfway transform of the door element */
       }
       100% {
-        transform: perspective(800px) rotateY(0);
+        transform: perspective(800px) rotateY(0); /* Set the ending transform of the door element */
       }
     }
+    
     /* Apply the animation to the door */
     .door.opening {
-      animation: door-opening 2s ease-in-out forwards;
+      animation: door-opening 2s ease-in-out forwards; /* Apply the door-opening animation to the door element with a duration of 2 seconds and ease-in-out timing */
+    }
+    
+    /* Define the fade-out transition */
+    .door {
+      opacity: 1; /* Set the initial opacity of the door element to 1 (fully opaque) */
+      transition: opacity 1s ease-in-out; /* Set the transition effect for opacity changes to 1 second with ease-in-out timing */
+    }
+    .door.fade-out {
+      opacity: 0; /* Set the opacity of the door element to 0 (fully transparent) */
     }
   </style>
 </head>
 <body>
-  <div class="door"></div>
+  <div class="door"></div> <!-- Add a div element with the "door" class to represent the door element -->
   <script>
-    // Add the opening class to the door after a delay
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.querySelector('.door').classList.add('opening');
-      }, 1000); // change the delay time here to adjust the animation timing
-    });
-  </script>
-</body>
-</html>
+    // Add the opening and fade-out classes to the door after a delay
+    window.addEventListener('load', function() { /* Add an event listener for when the window finishes loading */
+      setTimeout(function() { /* Add a timeout function to delay the start of the animation */
+        var door = document.querySelector('.door'); /* Find the door element using the ".door" class */
+        door.classList.add('opening'); /* Add the "opening" class to the door element to start the animation */
+        setTimeout(function() { /* Add a second timeout function to delay the fade-out effect */
+          door.classList.add('fade-out'); /* Add the "fade-out" class to the door element to start the fade-out effect */
+        }, 2000); // change the delay time here to adjust the animation timing
+      }, 1000); // change the delay time here to adjust
