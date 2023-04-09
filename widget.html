@@ -3,8 +3,13 @@
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script>
-      function calculateDamage() {
-        // Your damage calculator code goes here
+      function calculateDamage(diceType, numDice) {
+  var totalDamage = 0;
+  for (var i = 0; i < numDice; i++) {
+    var roll = Math.floor(Math.random() * diceType) + 1;
+    totalDamage += roll;
+  }
+  return totalDamage;
         var damageCalculator = document.createElement("div");
         damageCalculator.style.position = "fixed";
         damageCalculator.style.top = "50%";
