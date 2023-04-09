@@ -1,24 +1,69 @@
+
 #widget-container {
-  position: fixed;
-  top: 10;
-  right: 0;
-}
+    position: fixed;
+    top: 10;
+    right: 0;
+  }
+  
+  #widget {
+    position: relative;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    background-image: url("Images/D20.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 5px;
+    border: 3px solid transparent;
+    transition: background-color 0.3s;
+  }
+    
+  #widget:hover {
+    border: 3px solid #000000;
+    background-color: rgba(71, 71, 71, 0.1);
+  } 
 
-#widget {
-  width: 50px;
-  height: 50px;
-  background-color: #000;
-  border-radius: 50%;
-}
+  #panel {
+    width: 0;
+    height: 100%;
+    background-color: #ffffff;
+    transition: width 0.5s;
+    overflow: hidden;
+    opacity: 0;
+  }
+  
+  #panel.expanded {
+    width: 300px;
+    height: 300px;
+    border: 3px solid rgb(199, 19, 19);
+    opacity: 1;
+  }
 
-#panel {
-  width: 0;
-  height: 100%;
-  background-color: #fff;
-  transition: width 0.5s;
-}
-#panel.expanded {
-  width: 300px;
-  height: 300px;
-  border: 1px solid black;
-}
+  #dice-calculator {
+    display: none;
+  }
+  
+  #panel.expanded #dice-calculator {
+    display: block;
+  }
+
+  #dice-type {
+    margin-right: 10px;
+    font-size: 15px;
+  }
+  
+  #dice-count {
+    width: 10px;
+    margin-right: 10px;
+    font-size: 15px
+  }
+  
+  #roll-button {
+    margin-right: 10px;
+    font-size: 15px
+  }
+  
+  #result {
+    font-size: 24px;
+    text-align: center;
+  }
