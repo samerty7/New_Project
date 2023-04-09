@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Door Opening Animation</title>
+  <style>
+    /* Define the initial state of the door */
+    .door {
+      position: relative;
+      width: 400px;
+      height: 600px;
+      margin: 100px auto;
+      background-color: #ddd;
+      transform-origin: right;
+      transform: perspective(800px) rotateY(-110deg);
+    }
+    /* Define the animation for opening the door */
+    @keyframes door-opening {
+      0% {
+        transform: perspective(800px) rotateY(-110deg);
+      }
+      50% {
+        transform: perspective(800px) rotateY(-45deg);
+      }
+      100% {
+        transform: perspective(800px) rotateY(0);
+      }
+    }
+    /* Apply the animation to the door */
+    .door.opening {
+      animation: door-opening 2s ease-in-out forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="door"></div>
+  <script>
+    // Add the opening class to the door after a delay
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.querySelector('.door').classList.add('opening');
+      }, 1000); // change the delay time here to adjust the animation timing
+    });
+  </script>
+</body>
+</html>
