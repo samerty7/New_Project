@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>My Website</title>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <div id="widget-container">
       <div id="widget"></div>
-      <div id="panel"></div>
+      <div id="panel">
+        <div id="dice-calculator">
+            <select id="dice-type">
+                <option value="4">D4</option>
+                <option value="6">D6</option>
+                <option value="8">D8</option>
+                <option value="10">D10</option>
+                <option value="12">D12</option>
+                <option value="20">D20</option>
+                <option value="100">D100</option>
+            </select>
+            <input type="number" id="num-dice" placeholder="Number of Dice">
+            <button id="roll-button">Roll</button>
+            <div id="result"></div>
+          </div>
+        </div>
     </div>
     <header>
       <h1>My Website</h1>
