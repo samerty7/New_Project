@@ -2,72 +2,6 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <style>
-      #damage-calculator {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #007bff;
-        color: #fff;
-        font-size: 24px;
-        text-align: center;
-        line-height: 40px;
-        cursor: pointer;
-      }
-
-      #damage-calculator:hover {
-        background-color: #0062cc;
-      }
-
-      #damage-calculator:focus {
-        outline: none;
-      }
-
-      #damage-calculator-box {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 300px;
-        height: 200px;
-        border: 2px solid #000;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        display: none;
-      }
-
-      #damage-calculator-box h2 {
-        text-align: center;
-        margin-top: 20px;
-      }
-
-      #damage-calculator-box img {
-        width: 100px;
-        height: 100px;
-        display: block;
-        margin: 20px auto;
-      }
-
-      #damage-calculator-box label {
-        display: block;
-        margin-top: 20px;
-      }
-
-      #damage-calculator-box select,
-      #damage-calculator-box input[type="number"] {
-        display: block;
-        margin-top: 5px;
-      }
-
-      #damage-calculator-box button {
-        display: block;
-        margin: 20px auto;
-      }
-    </style>
     <script>
       function calculateDamage(diceType, numDice) {
         var totalDamage = 0;
@@ -77,18 +11,74 @@
         }
         return totalDamage;
       }
-
-      window.addEventListener("load", function() {
+      
+      function openDamageCalculator() {
         var damageCalculator = document.createElement("div");
-        damageCalculator.id = "damage-calculator";
-        damageCalculator.innerHTML = '<i class="fa-solid fa-dice-d20"></i>';
+        damageCalculator.style.position = "fixed";
+        damageCalculator.style.top = "50%";
+        damageCalculator.style.left = "50%";
+        damageCalculator.style.transform = "translate(-50%, -50%)";
+        damageCalculator.style.width = "300px";
+        damageCalculator.style.height = "200px";
+        damageCalculator.style.border = "2px solid #000";
+        damageCalculator.style.borderRadius = "5px";
+        damageCalculator.style.backgroundColor = "#fff";
+        damageCalculator.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
         document.body.appendChild(damageCalculator);
 
-        var damageCalculatorBox = document.createElement("div");
-        damageCalculatorBox.id = "damage-calculator-box";
-        damageCalculatorBox.innerHTML = `
-          <h2>Roll Damage</h2>
-          <img src="dice.png" alt="Dice">
-          <label>Select Dice Type:</label>
-          <select id="dice-type">
-            <option value="6">D6</option
+        var closeButton = document.createElement("button");
+        closeButton.innerHTML = "Close";
+        closeButton.style.position = "absolute";
+        closeButton.style.top = "5px";
+        closeButton.style.right = "5px";
+        closeButton.addEventListener("click", function() {
+          document.body.removeChild(damageCalculator);
+        });
+        damageCalculator.appendChild(closeButton);
+
+        var diceImage = document.createElement("img");
+        diceImage.src = "dice.png";
+        diceImage.style.width = "100px";
+        diceImage.style.height = "100px";
+        diceImage.style.display = "block";
+        diceImage.style.margin = "20px auto";
+        damageCalculator.appendChild(diceImage);
+
+        var selectLabel = document.createElement("label");
+        selectLabel.innerHTML = "Select Dice Type:";
+        selectLabel.style.display = "block";
+        selectLabel.style.marginTop = "20px";
+        damageCalculator.appendChild(selectLabel);
+
+        var selectInput = document.createElement("select");
+        selectInput.style.display = "block";
+        selectInput.style.marginTop = "5px";
+        var option1 = document.createElement("option");
+        option1.text = "D6";
+        selectInput.add(option1);
+        var option2 = document.createElement("option");
+        option2.text = "D10";
+        selectInput.add(option2);
+        damageCalculator.appendChild(selectInput);
+
+        var numLabel = document.createElement("label");
+        numLabel.innerHTML = "Number of Dice:";
+        numLabel.style.display = "block";
+        numLabel.style.marginTop = "20px";
+        damageCalculator.appendChild(numLabel);
+
+        var numInput = document.createElement("input");
+        numInput.type = "number";
+        numInput.min = "1";
+        numInput.max = "100";
+        numInput.value = "1";
+        numInput.style.display = "block";
+        numInput.style.marginTop = "5px";
+        damageCalculator.appendChild(numInput);
+
+        var confirmButton = document.createElement("button");
+        confirmButton.innerHTML = "Confirm";
+        confirmButton.style.display = "block";
+        confirmButton.style.margin = "20px auto";
+        confirmButton.addEventListener("click", function() {
+          var damage = calculate
